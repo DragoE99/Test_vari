@@ -65,6 +65,7 @@ public class InOutPrint {
 		k = bld.size();
 		System.out.println("la lista contiene "+k+" elementi");
 			
+		ProvaGit.Stampa();
 	
 
 	}
