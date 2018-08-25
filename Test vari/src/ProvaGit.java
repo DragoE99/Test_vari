@@ -1,8 +1,11 @@
 
 public class ProvaGit {
 	
-	public static void Stampa() {
-		System.out.println("test2");
+	public static void height() {
+		//System.out.println("test2");
+		//calcolo dell'altezza media
+		
+		
 	}
 
 }
