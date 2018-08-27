@@ -3,7 +3,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 
 public class InOutPrint {
@@ -64,8 +66,43 @@ public class InOutPrint {
 		
 		k = bld.size();
 		System.out.println("la lista contiene "+k+" elementi");
-			
-		ProvaGit.Stampa();
+		
+		System.out.println("test dei set");
+		Set<String> identificativi= new HashSet<String>();
+		
+		identificativi.add(primo.getId());
+		
+		System.out.println("il set contiene "+identificativi.size()+" elementi");
+		
+		identificativi.add(secondo.getId());
+		System.out.println("aggiunto anche il secondo id");
+		
+		if(identificativi.contains(primo.getId())) {
+			System.out.println("identificativo del primo edificio trovato");
+		}else {
+			System.out.println("identificativo del primo edificio NON trovato");
+		}
+		
+		System.out.println("il set contiene "+identificativi.size()+" elementi");
+		
+		System.out.println("cancello il primo");
+		identificativi.remove(primo.getId());
+		
+		System.out.println("il set contiene "+identificativi.size()+" elementi");
+		
+		
+		if(identificativi.contains(primo.getId())) {
+			System.out.println("identificativo del primo edificio trovato");
+		}else {
+			System.out.println("identificativo del primo edificio NON trovato");
+		}
+		
+		if(identificativi.contains(secondo.getId())) {
+			System.out.println("identificativo del secondo edificio trovato");
+		}else {
+			System.out.println("identificativo del secondo edificio NON trovato");
+		}
+		
 	
 
 	}

@@ -1,9 +1,8 @@
 package soluzione;
 
-/*Questa classe definisce l'oggetto palazzo */
-
+/**Classe che definisce l'oggetto palazzo**/
 public class Palazzo {
-	//parametri di un oalazzo
+	//parametri di un psalazzo
 	private int anno;
     private String id;
     private String lato;
@@ -39,7 +38,12 @@ public class Palazzo {
     public int getAltezza(){
         return altezza;
     }
+    public int getLimit() {
+    	return (distanza+base);
+    }
     
-    
+    //TODO creare funzione chechBuildings con tutti
+    //i check parametro per perametro
+    //ritorna FALSE se qualcosa non va
     
 }
