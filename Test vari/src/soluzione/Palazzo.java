@@ -2,7 +2,7 @@ package soluzione;
 
 /**Classe che definisce l'oggetto palazzo**/
 public class Palazzo {
-	//parametri di un psalazzo
+	//parametri di un palazzo
 	private int anno;
     private String id;
     private String lato;
@@ -41,9 +41,53 @@ public class Palazzo {
     public int getLimit() {
     	return (distanza+base);
     }
+    /**Funzione che controlla la correttezza dei parametri del palazzo da costruire**/
+    public Boolean checkBuilding(Palazzo p) {
+    	/*if(!checkAnno(p.getAnno())){
+    		return false;
+    	}
+    	if(!checkDistanza(p.getDistanza())) {
+    		return false;
+    	}
+    	if(!checkLato(p.getLato())) {
+    		return false;
+    	}
+    	if(!checkBase(p.getBase())) {
+    		return false;
+    	}
+    	if(!checkAltezza(p.getAltezza())) {
+    		return false;
+    	}
+    	return true;*/
+    	
+    	return (checkAnno(p.getAnno()) && checkDistanza(p.getDistanza()) &&
+    			checkLato(p.getLato()) && checkBase(p.getBase()) &&
+    			checkAltezza(p.getAltezza()));
+    }
     
-    //TODO creare funzione chechBuildings con tutti
-    //i check parametro per perametro
-    //ritorna FALSE se qualcosa non va
+    /**Funzione per controllare che il formato dell'anno sia corretto**/
+    private Boolean checkAnno(int anno) {
+    	return (anno >= 2050);
+    }
+ 
+    /**Funzione per controllare che il formato della distanza dal fiume sia corretto**/
+    private Boolean checkDistanza(int lato) {
+    	return (lato>=0);
+    }
+    
+    /**Funzione per controllare che il formato del lato sia correttto**/
+    private Boolean checkLato(String lato) {
+    	return (lato=="N" || lato=="S");
+    }
+    
+    /**Funzione per controllare che il formato della base sia corretto**/
+    private Boolean checkBase(int base) {
+    	return (base > 0);
+    }
+    
+    /**Funzione per controllare che il formato dell'altezza sia corretto**/
+    private Boolean checkAltezza(int altezza) {
+    	return (altezza > 0);
+    }
     
 }

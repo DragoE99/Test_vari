@@ -1,6 +1,7 @@
 package soluzione;
 
 public class SklHystory {
+	//TODO aggiungere anno iniziale e finale
 	private int Anno;
 	private int Ampiezza;
 	private double Altezza;

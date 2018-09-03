@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class FileManager {
 	
 	public static ArrayList<String> Load() {
-		System.out.println("Inserire il percorso del file degli eventi di costruzione/demolizione:");
+		System.out.println(Message.InsertEvent);
 		ArrayList<String> FilePath = new ArrayList<String>();
 		
 		String TempPath = getPath();
@@ -20,10 +20,10 @@ public class FileManager {
 		}
 		FilePath.add(TempPath);
 		
-		System.out.println("Inserire il percorso del file dei comandi:");
+		System.out.println(Message.InsertCommand);
 		TempPath = getPath();
 		if(!PathChecker(TempPath)) {
-			//TODO Creare metodo che stampa avviso: Impossibile proseguire con il programma
+			System.out.println(Message.ProgramFail);
 			System.exit(0);
 		}
 		FilePath.add(TempPath);
@@ -43,7 +43,7 @@ public class FileManager {
 		try {
 			percorso = br.readLine();
 		} catch (IOException e) {
-			System.out.println("Errore di input");
+			System.out.println(Message.InputError);
 		}		
 		return percorso;		
 	}
@@ -57,16 +57,16 @@ public class FileManager {
 		@SuppressWarnings("resource")
 		FileReader SKL = new FileReader(path);
 		if(SKL.read()== -1) {
-			System.out.println("file Vuoto");	
+			System.out.println(Message.FileEmpty);	
 			return false;
 		}		
 		
 		} catch (FileNotFoundException e) {
-			System.out.println("Percorso e/o file errati o inesistenti");
+			System.out.println(Message.PathError);
 			return false;
 			
 		} catch (IOException e) {
-			System.out.println("Errore IOException");
+			System.out.println(Message.InputError);
 			return false;
 		}
 		

@@ -52,7 +52,10 @@ public class Megalopolis {
 		if(p.getLimit()> MaxSudLimit) MaxSudLimit = p.getLimit();
 	}
 	
-
+	/**Funzione che controlla se l'identificativo di un palazzo è già in uso**/
+	public Boolean CheckId(String Identificativo) {
+		return (ID.contains(Identificativo));
+	}
 	
 
 }
