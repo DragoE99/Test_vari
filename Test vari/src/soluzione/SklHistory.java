@@ -1,12 +1,15 @@
 package soluzione;
 
-public class SklHystory {
-	//TODO aggiungere anno iniziale e finale
+import java.util.ArrayList;
+
+public class SklHistory {
+	
 	private int Anno;
 	private int Ampiezza;
 	private double Altezza;
 	
-	
+	public static ArrayList<SklHistory> Data;
+
 	public int getAnno() {
 		return Anno;
 	}

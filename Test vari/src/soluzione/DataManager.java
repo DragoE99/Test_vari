@@ -13,7 +13,7 @@ public class DataManager {
 	}
 	
 	private static void Import(String f){
-		
+		int tempyear = 0;
 		String line;
 		Megalopolis current = new Megalopolis();
 		
@@ -32,6 +32,11 @@ public class DataManager {
 			        int anno = Integer.parseInt(st.nextToken());
 			        String id = st.nextToken();
 			        
+			        if(anno>tempyear && tempyear!=0) {
+			        	
+			        	current.UpdateHistory(tempyear);
+			        }
+			        
 			        if(istruzione.equals("build") && !current.CheckId(id)) {
 			            
 			            String lato = st.nextToken();
@@ -41,9 +46,11 @@ public class DataManager {
 			            Palazzo temp = new Palazzo(anno, id, lato, distanza, base, altezza);
 			         if(temp.checkBuilding(temp)) {
 			        	current.Build(temp);
+			        	tempyear = anno;
 			         }
 			        }else if (istruzione.equals("demolish") && current.CheckId(id)) {
-			        	
+			        	current.Demolish(id);
+			        	tempyear = anno;
 			        }
 			    	
 			    }
@@ -51,6 +58,8 @@ public class DataManager {
 		} catch (Exception e) {
 			System.out.println(Message.InputError);
 		} 
+	
+	//aggiungere calcolo soze e higth pure qui per l'ultimo anno
 		
 	}
 	
