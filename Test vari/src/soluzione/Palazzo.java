@@ -39,26 +39,10 @@ public class Palazzo {
         return altezza;
     }
     public int getLimit() {
-    	return (distanza+base);
+    	return ((distanza+base));
     }
     /**Funzione che controlla la correttezza dei parametri del palazzo da costruire**/
     public Boolean checkBuilding(Palazzo p) {
-    	/*if(!checkAnno(p.getAnno())){
-    		return false;
-    	}
-    	if(!checkDistanza(p.getDistanza())) {
-    		return false;
-    	}
-    	if(!checkLato(p.getLato())) {
-    		return false;
-    	}
-    	if(!checkBase(p.getBase())) {
-    		return false;
-    	}
-    	if(!checkAltezza(p.getAltezza())) {
-    		return false;
-    	}
-    	return true;*/
     	
     	return (checkAnno(p.getAnno()) && checkDistanza(p.getDistanza()) &&
     			checkLato(p.getLato()) && checkBase(p.getBase()) &&
@@ -77,7 +61,7 @@ public class Palazzo {
     
     /**Funzione per controllare che il formato del lato sia correttto**/
     private Boolean checkLato(String lato) {
-    	return (lato=="N" || lato=="S");
+    	return (lato.equals("N") || lato.equals("S"));
     }
     
     /**Funzione per controllare che il formato della base sia corretto**/

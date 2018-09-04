@@ -7,31 +7,40 @@ import java.util.Set;
 public class Megalopolis {
 	
 	Set<String> ID = new HashSet<String>();		//set di identificativi dei palazzi presenti
-	int minSudLimit = 0;		//distanza minima dal fiume degli edifici del lato Sud
+	int minSudLimit = 200;		//distanza minima dal fiume degli edifici del lato Sud
 	int MaxSudLimit = 0;		//distanza massima dal fiume degli edifici del lato Sud
-	int minNordLimit = 0;		//distanza minima dal fiume degli edifici del lato Nord
+	int minNordLimit = 200;		//distanza minima dal fiume degli edifici del lato Nord
 	int MaxNordLimit = 0;		//distanza massima dal fiume degli edifici del lato Nord
-	ArrayList<Palazzo> NordBuildings;	//lista di edifici del lato Nord
-	ArrayList<Palazzo> SudBuildings;	//lista di edifici del lato Sud
+	ArrayList<Palazzo> NordBuildings = new ArrayList<Palazzo>();	//lista di edifici del lato Nord
+	ArrayList<Palazzo> SudBuildings = new ArrayList<Palazzo>();	//lista di edifici del lato Sud
 	
 	/**Funzione che inserisce, in base all'altezza,il palazzo nella lista appropriateo**/
 	public void Build(Palazzo p) {
-		if(p.getLato()=="N") {
+		boolean inserito = false;
+		if(p.getLato().equals("N")) {
 			//funzione per inserire l'edificio a nord
-			for(int i=0; i<NordBuildings.size(); i++) {
+			for(int i=0; i<NordBuildings.size()&& !inserito; i++) {
 				if(p.getAltezza()>NordBuildings.get(i).getAltezza()) {
 					NordBuildings.add(i, p);
+					inserito= true;
 				}
+			}
+			if(!inserito) {
+				NordBuildings.add(p);
 			}
 			
 			LimitNUpdate(p);
 			
-		}else {
+		}else if(p.getLato().equals("S")){
 			//funzione per inserire l'edificio a sud
-			for(int i=0; i<SudBuildings.size(); i++) {
+			for(int i=0; i<SudBuildings.size() && !inserito; i++) {
 				if(p.getAltezza()>SudBuildings.get(i).getAltezza()) {
 					SudBuildings.add(i, p);
+					inserito= true;
 				}
+			}
+			if(!inserito) {
+				SudBuildings.add(p);
 			}
 			LimitSUpdate(p);
 		}
@@ -41,14 +50,18 @@ public class Megalopolis {
 	}
 	
 	public void Demolish(String id) {
-		
 		for(int i=0; i<NordBuildings.size(); i++) {
-			if(id == NordBuildings.get(i).getId()) {
+			
+			if(NordBuildings.get(i).getId().equals(id)) {
+				
 				if(NordBuildings.get(i).getLimit() == MaxNordLimit ||
 						NordBuildings.get(i).getDistanza() == minNordLimit) {
+					
 					NordBuildings.remove(i);
-					LimitChange('N');
+					
+					
 					}else NordBuildings.remove(i);
+				LimitChange("N");
 				ID.remove(id);
 				return;
 			}
@@ -56,14 +69,14 @@ public class Megalopolis {
 		
 		
 		for(int i=0; i< SudBuildings.size(); i++) {
-			if(id == SudBuildings.get(i).getId()) {
+			if(SudBuildings.get(i).getId().equals(id)) {
+				
 				if(SudBuildings.get(i).getLimit() == MaxSudLimit ||
-						SudBuildings.get(i).getDistanza() == minSudLimit) {
-					
+						SudBuildings.get(i).getDistanza() == minSudLimit) {					
 					SudBuildings.remove(i);
-					LimitChange('S');
 					
 				}else SudBuildings.remove(i);
+				LimitChange("S");
 				ID.remove(id);
 				return;				
 			}
@@ -89,12 +102,16 @@ public class Megalopolis {
 		return (ID.contains(Identificativo));
 	}
 	
-	private void LimitChange(char lato) {
-		if(lato == 'N') {
+	private void LimitChange(String lato) {
+		if(lato.equals("N")) {
+			MaxNordLimit = 0;
+			minNordLimit = 200;
 			for(int i=0; i < NordBuildings.size(); i++) {
 				LimitNUpdate(NordBuildings.get(i));
 			}
-		}else if(lato =='S'){
+		}else if(lato.equals("S")){
+			MaxSudLimit =0;
+			minSudLimit =200;
 			for(int i = 0; i < SudBuildings.size(); i++) {
 				LimitSUpdate(SudBuildings.get(i));
 			}
@@ -103,22 +120,26 @@ public class Megalopolis {
 	
 	public void UpdateHistory(int anno) {
 		/*calcolare ampiezza altezza e salvarli nella lista della storia*/
-		SklHistory temp = new SklHistory();
-		temp.setAnno(anno);
-		temp.setAmpiezza((MaxNordLimit+MaxSudLimit));
-		temp.setAltezza(AverageH());
-		SklHistory.Data.add(temp);
+		SklHistory temp = new SklHistory(anno, size(anno),height(anno));
+		/*temp.setAnno(anno);
+		temp.setAmpiezza(size(anno));
+		temp.setAltezza(height(anno));*/
+		DataManager.Data.add(temp);
 		
 	}
 	
-	public double AverageH() {
-		boolean[] bSud = new boolean[MaxSudLimit-minSudLimit];        
-        boolean[] bNord = new boolean[MaxNordLimit-minNordLimit];
+	public int size(int year) {
+		return ((MaxNordLimit+MaxSudLimit));
+	}
+	
+	public double height(int year) {
+		boolean[] bSud = new boolean[MaxSudLimit];        
+        boolean[] bNord = new boolean[MaxNordLimit];
         double AltMedia = 0;
         
         for(int i=0; i< NordBuildings.size(); i++) {
         	
-        	for(int k=0; k<NordBuildings.get(i).getLimit();k++) {
+        	for(int k = NordBuildings.get(i).getDistanza(); k < NordBuildings.get(i).getLimit(); k++) {
         		if(bNord[k] ==false){
 					AltMedia += NordBuildings.get(i).getAltezza();
 					bNord[k]=true;
@@ -126,16 +147,16 @@ public class Megalopolis {
         	}        	
         }
         
-        for (int i=0; i< SudBuildings.size(); i++) {
+        for (int i=0; i < SudBuildings.size(); i++) {
         	
-        	for(int k=0; k<SudBuildings.get(i).getLimit();k++) {
+        	for(int k =SudBuildings.get(i).getDistanza(); k< SudBuildings.get(i).getLimit();k++) {
         		if(bSud[k] ==false){
 					AltMedia += SudBuildings.get(i).getAltezza();
 					bSud[k]=true;
 					}
         	}        	
         }
-        return (AltMedia/(MaxNordLimit+MaxSudLimit));
+        return ((AltMedia/(MaxNordLimit+MaxSudLimit)));
         
 	}
 

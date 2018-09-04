@@ -1,6 +1,6 @@
 package soluzione;
 
-import java.util.ArrayList;
+
 
 public class SklHistory {
 	
@@ -8,7 +8,12 @@ public class SklHistory {
 	private int Ampiezza;
 	private double Altezza;
 	
-	public static ArrayList<SklHistory> Data;
+	public SklHistory(int anno, int ampiezza, double altezza) {
+		this.Anno = anno;
+		this.Ampiezza = ampiezza;
+		this.Altezza = altezza;
+	}
+	
 
 	public int getAnno() {
 		return Anno;
