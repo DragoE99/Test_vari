@@ -71,7 +71,7 @@ public class DataManager {
 		
 	}
 	
-
+// TODO aggiungere controllo per anni iniziali (se ti chiede l'altezza di un anno che non c'è
 	private static void Command(String f) {
 		String line;  
 		
@@ -112,6 +112,7 @@ public class DataManager {
 	
 	
 	private static int Ampiezza(int anno) {
+		if(Data.get(0).getAnno() <= anno) {
 		for(int i=0;i<Data.size() ; i++) {
 			if(anno==Data.get(i).getAnno()) {
 				return (Data.get(i).getAmpiezza());
@@ -120,10 +121,12 @@ public class DataManager {
 			}
 			
 		}
+		}
 		return 0;		
 	}
 	
 	private static double AvarangeH(int anno) {
+		if(Data.get(0).getAnno() <= anno) {
 		for(int i=0; i<Data.size(); i++) {
 			if(anno == Data.get(i).getAnno()) {
 				return (Data.get(i).getAltezza());
@@ -131,6 +134,7 @@ public class DataManager {
 				return (Data.get(i-1).getAltezza());
 			}
 			
+		}
 		}
 		return 0;
 		

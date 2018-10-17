@@ -58,10 +58,10 @@ public class Megalopolis {
 						NordBuildings.get(i).getDistanza() == minNordLimit) {
 					
 					NordBuildings.remove(i);
-					
+					LimitChange("N");
 					
 					}else NordBuildings.remove(i);
-				LimitChange("N");
+				
 				ID.remove(id);
 				return;
 			}
@@ -74,9 +74,9 @@ public class Megalopolis {
 				if(SudBuildings.get(i).getLimit() == MaxSudLimit ||
 						SudBuildings.get(i).getDistanza() == minSudLimit) {					
 					SudBuildings.remove(i);
-					
+					LimitChange("S");
 				}else SudBuildings.remove(i);
-				LimitChange("S");
+				
 				ID.remove(id);
 				return;				
 			}
