@@ -9,16 +9,28 @@ import java.util.ArrayList;
 
 public class FileManager {
 	
-	public static ArrayList<String> Load() {
-		System.out.println(Message.InsertEvent);
+	public static ArrayList<String> Load(String f1, String f2) {
 		ArrayList<String> FilePath = new ArrayList<String>();
+		String TempPath;
 		
-		String TempPath = getPath();
+		if(PathChecker(f1)){
+			FilePath.add(f1);
+
+		}else {
+		
+		System.out.println(Message.InsertEvent);		
+		TempPath = getPath();
 		if(!PathChecker(TempPath)) {
-			//TODO Creare metodo che stampa avviso: Impossibile proseguire con il programma
+			System.out.println(Message.ProgramFail);
 			System.exit(0);
 		}
 		FilePath.add(TempPath);
+		}
+		
+		
+		if(PathChecker(f2)) {
+			FilePath.add(f2);
+		}else {
 		
 		System.out.println(Message.InsertCommand);
 		TempPath = getPath();
@@ -27,6 +39,7 @@ public class FileManager {
 			System.exit(0);
 		}
 		FilePath.add(TempPath);
+		}
 		
 		return FilePath;
 		

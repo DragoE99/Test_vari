@@ -94,17 +94,17 @@ public class DataManager {
 			             }
 			             else if(istruzione.equals("h")){
 			                 int year = Integer.parseInt(st.nextToken());
-			                 System.out.println(istruzione +  " " + year + " : " + AvarangeH(year));
+			                 System.out.println(istruzione +  " " + year + " : " + (float)AvarangeH(year));
 			             }
 			             else
 			                 System.out.println("comando non valido");
 			         }
 			}
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}     
 		

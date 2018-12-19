@@ -14,11 +14,12 @@ public class Megalopolis {
 	ArrayList<Palazzo> NordBuildings = new ArrayList<Palazzo>();	//lista di edifici del lato Nord
 	ArrayList<Palazzo> SudBuildings = new ArrayList<Palazzo>();	//lista di edifici del lato Sud
 	
-	/**Funzione che inserisce, in base all'altezza,il palazzo nella lista appropriateo**/
+	/**Funzione che inserisce, in base all'altezza,il palazzo nella lista appropriata**/
+	//TODO RICERCA BINARIA PER POSIZIONE EDIFICIO NELLA LISTA 
 	public void Build(Palazzo p) {
 		boolean inserito = false;
 		if(p.getLato().equals("N")) {
-			//funzione per inserire l'edificio a nord
+			//Inserimento a nord
 			for(int i=0; i<NordBuildings.size()&& !inserito; i++) {
 				if(p.getAltezza()>NordBuildings.get(i).getAltezza()) {
 					NordBuildings.add(i, p);
@@ -32,7 +33,7 @@ public class Megalopolis {
 			LimitNUpdate(p);
 			
 		}else if(p.getLato().equals("S")){
-			//funzione per inserire l'edificio a sud
+			//Inserimento a sud
 			for(int i=0; i<SudBuildings.size() && !inserito; i++) {
 				if(p.getAltezza()>SudBuildings.get(i).getAltezza()) {
 					SudBuildings.add(i, p);
@@ -49,6 +50,7 @@ public class Megalopolis {
 		
 	}
 	
+	/**Funzione per demolire gli edifici**/
 	public void Demolish(String id) {
 		for(int i=0; i<NordBuildings.size(); i++) {
 			
