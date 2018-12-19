@@ -7,9 +7,9 @@ import java.util.Set;
 public class Megalopolis {
 	
 	Set<String> ID = new HashSet<String>();		//set di identificativi dei palazzi presenti
-	int minSudLimit = 200;		//distanza minima dal fiume degli edifici del lato Sud
+	int minSudLimit = Integer.MAX_VALUE;		//distanza minima dal fiume degli edifici del lato Sud
 	int MaxSudLimit = 0;		//distanza massima dal fiume degli edifici del lato Sud
-	int minNordLimit = 200;		//distanza minima dal fiume degli edifici del lato Nord
+	int minNordLimit = Integer.MAX_VALUE;		//distanza minima dal fiume degli edifici del lato Nord
 	int MaxNordLimit = 0;		//distanza massima dal fiume degli edifici del lato Nord
 	ArrayList<Palazzo> NordBuildings = new ArrayList<Palazzo>();	//lista di edifici del lato Nord
 	ArrayList<Palazzo> SudBuildings = new ArrayList<Palazzo>();	//lista di edifici del lato Sud
@@ -107,13 +107,13 @@ public class Megalopolis {
 	private void LimitChange(String lato) {
 		if(lato.equals("N")) {
 			MaxNordLimit = 0;
-			minNordLimit = 200;
+			minNordLimit = Integer.MAX_VALUE;
 			for(int i=0; i < NordBuildings.size(); i++) {
 				LimitNUpdate(NordBuildings.get(i));
 			}
 		}else if(lato.equals("S")){
 			MaxSudLimit =0;
-			minSudLimit =200;
+			minSudLimit = Integer.MAX_VALUE;
 			for(int i = 0; i < SudBuildings.size(); i++) {
 				LimitSUpdate(SudBuildings.get(i));
 			}

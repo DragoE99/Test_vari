@@ -118,9 +118,9 @@ public class DataManager {
 				return (Data.get(i).getAmpiezza());
 			}else if(anno< Data.get(i).getAnno()) {
 				return (Data.get(i-1).getAmpiezza());
-			}
-			
+			}						
 		}
+		return (Data.get((Data.size()-1)).getAmpiezza());
 		}
 		return 0;		
 	}
@@ -132,9 +132,9 @@ public class DataManager {
 				return (Data.get(i).getAltezza());
 			}else if (anno < Data.get(i).getAnno()) {
 				return (Data.get(i-1).getAltezza());
-			}
-			
+			}			
 		}
+		return (Data.get((Data.size()-1)).getAltezza());
 		}
 		return 0;
 		
