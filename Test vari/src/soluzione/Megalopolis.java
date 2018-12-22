@@ -17,14 +17,17 @@ public class Megalopolis {
 	/**Funzione che inserisce, in base all'altezza,il palazzo nella lista appropriata**/
 	//TODO RICERCA BINARIA PER POSIZIONE EDIFICIO NELLA LISTA 
 	public void Build(Palazzo p) {
-		boolean inserito = false;
+		boolean inserito = false;		
+		
 		if(p.getLato().equals("N")) {
 			//Inserimento a nord
-			for(int i=0; i<NordBuildings.size()&& !inserito; i++) {
-				if(p.getAltezza()>NordBuildings.get(i).getAltezza()) {
-					NordBuildings.add(i, p);
-					inserito= true;
-				}
+			int i = NordBuildings.size();
+			for(i=i/2; i!=0 && !inserito; i=i/2) {
+				if(p.getAltezza()>NordBuildings.get(i).getAltezza()
+						&&p.getAltezza()<NordBuildings.get(i-1).getAltezza()) {
+						NordBuildings.add(i, p);
+						inserito= true;
+					}
 			}
 			if(!inserito) {
 				NordBuildings.add(p);
@@ -34,11 +37,13 @@ public class Megalopolis {
 			
 		}else if(p.getLato().equals("S")){
 			//Inserimento a sud
-			for(int i=0; i<SudBuildings.size() && !inserito; i++) {
-				if(p.getAltezza()>SudBuildings.get(i).getAltezza()) {
-					SudBuildings.add(i, p);
-					inserito= true;
-				}
+			int i = SudBuildings.size();
+			for(i=i/2; i!=0 && !inserito; i=i/2) {
+				if(p.getAltezza()>SudBuildings.get(i).getAltezza()
+						&&p.getAltezza()<SudBuildings.get(i-1).getAltezza()) {
+						SudBuildings.add(i, p);
+						inserito= true;
+					}
 			}
 			if(!inserito) {
 				SudBuildings.add(p);

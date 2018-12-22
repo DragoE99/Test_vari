@@ -9,6 +9,7 @@ public class Message {
 	static String InsertEvent = "\nInserire il percorso del file degli eventi di costruzione/demolizione:";
 	static String InsertCommand = "\nInserire il percorso del file dei comandi:";
 	static String PathError = "Percorso e/o file errati o inesistenti";
+	static String InvalidArgument = "Argomenti inesistenti o errati";
 	
 	
 

@@ -17,7 +17,7 @@ public class FileManager {
 			FilePath.add(f1);
 
 		}else {
-		
+		System.out.println(Message.InvalidArgument);
 		System.out.println(Message.InsertEvent);		
 		TempPath = getPath();
 		if(!PathChecker(TempPath)) {
@@ -30,9 +30,9 @@ public class FileManager {
 		
 		if(PathChecker(f2)) {
 			FilePath.add(f2);
-		}else {
-		
-		System.out.println(Message.InsertCommand);
+		}else {		
+		System.out.println(Message.InvalidArgument);	
+		System.out.println(Message.InsertCommand);		
 		TempPath = getPath();
 		if(!PathChecker(TempPath)) {
 			System.out.println(Message.ProgramFail);
