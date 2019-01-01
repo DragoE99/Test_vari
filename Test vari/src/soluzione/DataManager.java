@@ -71,7 +71,7 @@ public class DataManager {
 		
 	}
 	
-// TODO aggiungere controllo per anni iniziali (se ti chiede l'altezza di un anno che non c'è
+
 	private static void Command(String f) {
 		String line;  
 		
